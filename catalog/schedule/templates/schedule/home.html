@@ -1,0 +1,13 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Schedule{% endblock %}
+
+{% block content %}
+<h2>Приложение расписания</h2>
+<ul>
+    <li><a href="{% url 'schedule:teacher_list' %}">Teacher index</a></li>
+    <li><a href="{% url 'schedule:course_list' %}">Course index</a></li>
+    <li><a href="{% url 'schedule:student_list' %}">Student index</a></li>
+    <li><a href="{% url 'schedule:orm_queries' %}">ORM-запросы</a></li>
+</ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Удаление преподавателя{% endblock %}
+
+{% block content %}
+<h2>Удаление преподавателя</h2>
+<p>Удалить {{ teacher }}? Профиль TeacherInfo также будет удален (CASCADE).</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Подтвердить удаление</button>
+</form>
+{% endblock %}

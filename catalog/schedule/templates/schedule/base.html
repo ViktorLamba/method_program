@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Schedule{% endblock %}</title>
+</head>
+<body>
+    <h1>Schedule</h1>
+    <nav>
+        <a href="{% url 'schedule:home' %}">Главная</a> |
+        <a href="{% url 'schedule:teacher_list' %}">Преподаватели</a> |
+        <a href="{% url 'schedule:course_list' %}">Курсы</a> |
+        <a href="{% url 'schedule:student_list' %}">Студенты</a> |
+        <a href="{% url 'schedule:orm_queries' %}">ORM-запросы</a>
+    </nav>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

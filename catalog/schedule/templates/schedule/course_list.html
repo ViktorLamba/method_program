@@ -1,0 +1,31 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Курсы{% endblock %}
+
+{% block content %}
+<h2>Курсы</h2>
+<p><a href="{% url 'schedule:course_create' %}">Создать курс</a></p>
+
+<form method="get">
+    <label for="teacher">Фильтр по преподавателю:</label>
+    <select id="teacher" name="teacher">
+        <option value="">Все</option>
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}" {% if selected_teacher == teacher.id|stringformat:"s" %}selected{% endif %}>{{ teacher }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Фильтровать</button>
+</form>
+
+<ul>
+    {% for course in courses %}
+        <li>
+            {{ course.title }} ({{ course.code }}) - {{ course.teacher|default:"Без преподавателя" }}
+            | <a href="{% url 'schedule:course_update' course.id %}">Изменить</a>
+            | <a href="{% url 'schedule:course_delete' course.id %}">Удалить</a>
+        </li>
+    {% empty %}
+        <li>Нет курсов.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

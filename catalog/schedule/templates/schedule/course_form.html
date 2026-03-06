@@ -1,0 +1,12 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}{% if is_create %}Создание курса{% else %}Редактирование курса{% endif %}{% endblock %}
+
+{% block content %}
+<h2>{% if is_create %}Создание курса{% else %}Редактирование курса{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

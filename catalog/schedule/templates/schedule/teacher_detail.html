@@ -1,0 +1,22 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}{{ teacher }}{% endblock %}
+
+{% block content %}
+<h2>{{ teacher }}</h2>
+<p>Email: {{ teacher.email }}</p>
+<p>Код сотрудника: {{ teacher.employee_code }}</p>
+<p>Телефон: {{ teacher.phone }}</p>
+<p>Дата найма: {{ teacher.hire_date }}</p>
+
+<h3>TeacherInfo</h3>
+{% if teacher.info %}
+    <p>Степень: {{ teacher.info.degree }}</p>
+    <p>Кабинет: {{ teacher.info.office }}</p>
+    <p>Опыт: {{ teacher.info.years_of_experience }} лет</p>
+    <p>Биография: {{ teacher.info.biography }}</p>
+    <p>Сайт: {{ teacher.info.website|default:"-" }}</p>
+{% else %}
+    <p>Профиль отсутствует.</p>
+{% endif %}
+{% endblock %}

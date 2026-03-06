@@ -1,0 +1,55 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}ORM-запросы{% endblock %}
+
+{% block content %}
+<h2>ORM-запросы</h2>
+
+<h3>1. Все студенты курса</h3>
+<form method="get">
+    <label for="course_id">Курс:</label>
+    <select id="course_id" name="course_id">
+        <option value="">Выберите курс</option>
+        {% for course in courses %}
+            <option value="{{ course.id }}" {% if selected_course and selected_course.id == course.id %}selected{% endif %}>{{ course }}</option>
+        {% endfor %}
+    </select>
+    <label for="min_courses">n (для преподавателей):</label>
+    <input type="number" id="min_courses" name="min_courses" value="{{ min_courses_value }}" min="0">
+    <button type="submit">Показать</button>
+</form>
+<ul>
+    {% for student in students_for_course %}
+        <li>{{ student }}</li>
+    {% empty %}
+        <li>Нет данных (или курс не выбран).</li>
+    {% endfor %}
+</ul>
+
+<h3>2. Все преподаватели, у которых больше n курсов</h3>
+<ul>
+    {% for teacher in teachers_with_many_courses %}
+        <li>{{ teacher }} ({{ teacher.course_count }} курсов)</li>
+    {% empty %}
+        <li>Нет преподавателей.</li>
+    {% endfor %}
+</ul>
+
+<h3>3. Студенты без курсов</h3>
+<ul>
+    {% for student in students_without_courses %}
+        <li>{{ student }}</li>
+    {% empty %}
+        <li>Нет студентов без курсов.</li>
+    {% endfor %}
+</ul>
+
+<h3>4. Преподаватели без профиля</h3>
+<ul>
+    {% for teacher in teachers_without_profile %}
+        <li>{{ teacher }}</li>
+    {% empty %}
+        <li>Нет преподавателей без профиля.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

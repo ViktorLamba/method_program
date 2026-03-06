@@ -1,0 +1,30 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Студенты{% endblock %}
+
+{% block content %}
+<h2>Студенты</h2>
+<p><a href="{% url 'schedule:student_create' %}">Создать студента</a></p>
+<ul>
+    {% for student in students %}
+        <li>
+            {{ student }} ({{ student.student_number }})
+            | <a href="{% url 'schedule:student_update' student.id %}">Изменить</a>
+            | <a href="{% url 'schedule:student_delete' student.id %}">Удалить</a>
+            | <a href="{% url 'schedule:student_enroll' student.id %}">Записать на курс</a>
+            {% if student.courses.count %}
+                <ul>
+                    {% for course in student.courses.all %}
+                        <li>
+                            {{ course.title }}
+                            <a href="{% url 'schedule:student_unenroll' student.id course.id %}">Отписать</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>Нет студентов.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

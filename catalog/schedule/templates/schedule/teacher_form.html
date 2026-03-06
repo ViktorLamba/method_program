@@ -1,0 +1,14 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}{% if is_create %}Создание преподавателя{% else %}Редактирование преподавателя{% endif %}{% endblock %}
+
+{% block content %}
+<h2>{% if is_create %}Создание преподавателя{% else %}Редактирование преподавателя{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ teacher_form.as_p }}
+    <h3>Дополнительная информация о преподавателе</h3>
+    {{ info_form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

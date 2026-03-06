@@ -1,0 +1,12 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Отписка от курса{% endblock %}
+
+{% block content %}
+<h2>Отписка от курса</h2>
+<p>Отписать "{{ student }}" от курса "{{ course }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Подтвердить</button>
+</form>
+{% endblock %}

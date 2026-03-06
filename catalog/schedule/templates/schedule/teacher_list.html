@@ -1,0 +1,20 @@
+{% extends "schedule/base.html" %}
+
+{% block title %}Преподаватели{% endblock %}
+
+{% block content %}
+<h2>Преподаватели</h2>
+<p><a href="{% url 'schedule:teacher_create' %}">Создать преподавателя</a></p>
+<ul>
+    {% for teacher in teachers %}
+        <li>
+            <a href="{% url 'schedule:teacher_detail' teacher.id %}">{{ teacher }}</a>
+            ({{ teacher.email }})
+            | <a href="{% url 'schedule:teacher_update' teacher.id %}">Изменить</a>
+            | <a href="{% url 'schedule:teacher_delete' teacher.id %}">Удалить</a>
+        </li>
+    {% empty %}
+        <li>Нет преподавателей.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
