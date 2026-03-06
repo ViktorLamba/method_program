@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Курсы - Каталог курсов</title>
+</head>
+<body>
+    <h1>Все курсы</h1>
+    
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/courses/">Курсы</a></li>
+        <li><a href="/authors/">Авторы</a></li>
+        <li><a href="/info/">Информация</a></li>
+    </ul>
+    
+    <p>Всего курсов: {{ courses|length }}</p>
+    
+    <ul>
+        {% for course in courses %}
+        <li>
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+            <p>Уровень: {{ course.level }}</p>
+            <p>Цена: {{ course.price }} руб.</p>
+            <p>Длительность: {{ course.duration }}</p>
+            <a href="/courses/{{ course.id }}/">Подробнее о курсе</a>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
