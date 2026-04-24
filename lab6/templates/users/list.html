@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Пользователи{% endblock %}
+{% block content %}
+<h1>Все пользователи</h1>
+<ul>
+    {% for profile_user in users %}
+    <li>
+        <a href="{% url 'profile_detail' profile_user.username %}">{{ profile_user.username }}</a>
+        {% if profile_user.id in friend_ids %}
+            (друг)
+        {% else %}
+            <form method="post" action="{% url 'add_friend' profile_user.username %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Добавить в друзья</button>
+            </form>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>Других пользователей пока нет.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

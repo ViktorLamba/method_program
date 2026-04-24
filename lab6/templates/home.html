@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<h1>Практическая работа 3</h1>
+{% if user.is_authenticated %}
+<p>Откройте <a href="{% url 'profile_me' %}">свой профиль</a> или список всех пользователей.</p>
+{% else %}
+<p>Для работы с профилями и друзьями нужно зарегистрироваться или войти.</p>
+{% endif %}
+{% endblock %}

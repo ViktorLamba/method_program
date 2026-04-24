@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<h1>Лабораторная работа 5</h1>
+<p>Тема: Пользователи в Django.</p>
+{% if user.is_authenticated %}
+<p>Вы авторизованы как <b>{{ user.username }}</b>.</p>
+{% else %}
+<p>Чтобы продолжить, войдите или зарегистрируйтесь.</p>
+{% endif %}
+{% endblock %}
